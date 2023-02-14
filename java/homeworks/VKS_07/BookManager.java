@@ -36,36 +36,36 @@ public class BookManager {
 
         int uniqueWords = Arrays.stream(withoutSpecialChar.split(" ")).collect(Collectors.toSet()).size();
 
-        Map<String, Integer> mostPopularWord = tenMostPopularWord(withoutSpecialChar);
+        Map<String, Integer> mostUsedWord = tenMostUsedWord(withoutSpecialChar);
 
         String bookTitle = Arrays.stream(book.getName().split("\\.")).toList().get(0);
 
-        statisticLog(mostPopularWord, uniqueWords, bookTitle);
+        statisticLog(mostUsedWord, uniqueWords, bookTitle);
     }
 
-    private Map<String, Integer> tenMostPopularWord(String sentence){
+    private Map<String, Integer> tenMostUsedWord(String sentence){
         List<String> separatedWords = Arrays.stream(sentence.split(" ")).toList();
-        HashMap<String, Integer> popularWords = new HashMap<>();
+        HashMap<String, Integer> usedWords = new HashMap<>();
 
         separatedWords.stream().filter(word -> word.length() > 2).forEach(word -> {
-            if(popularWords.containsKey(word)){
-                popularWords.put(word, popularWords.get(word)+1);
+            if(usedWords.containsKey(word)){
+                usedWords.put(word, usedWords.get(word)+1);
             }else{
-                popularWords.put(word, 1);
+                usedWords.put(word, 1);
             }
         });
 
         HashMap<String, Integer> result = new HashMap<>();
 
-        popularWords.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed()).limit(10).forEach(e -> result.put(e.getKey(), e.getValue()));
+        usedWords.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed()).limit(10).forEach(e -> result.put(e.getKey(), e.getValue()));
 
         return result;
     }
 
-    private void statisticLog(Map<String, Integer> mostPopularWord, int uniqueWord, String bookTitle){
+    private void statisticLog(Map<String, Integer> mostUsedWord, int uniqueWord, String bookTitle){
         StringBuilder bookLog = new StringBuilder();
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("java\\homeworks\\VKS_07\\books\\" + bookTitle + "_statistic.txt"))){
-            mostPopularWord.forEach((key, value) -> {
+            mostUsedWord.forEach((key, value) -> {
                     bookLog.append(key).append(" -> ").append(value).append("\n");
             });
             bookLog.append("Number of unique words - ").append(uniqueWord);
