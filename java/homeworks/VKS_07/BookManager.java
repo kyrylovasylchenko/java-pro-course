@@ -32,7 +32,7 @@ public class BookManager {
             System.out.println(Arrays.toString(e.getStackTrace()));
             return;
         }
-        String withoutSpecialChar = bookBuild.toString().replaceAll("(?U)[^\\p{L}\\p{N}\\s]+(\\n)", "").toLowerCase();
+        String withoutSpecialChar = bookBuild.toString().replaceAll("[.,"\'-?:!;]", "").toLowerCase();
 
         int uniqueWords = Arrays.stream(withoutSpecialChar.split(" ")).collect(Collectors.toSet()).size();
 
