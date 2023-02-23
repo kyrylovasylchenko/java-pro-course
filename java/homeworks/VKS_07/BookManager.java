@@ -26,7 +26,7 @@ public class BookManager {
 
             int uniqueWords = Arrays.stream(withoutSpecialChar.split(" ")).collect(Collectors.toSet()).size();
 
-            Map<String, Integer> mostPopularWord = tenMostPopularWord(withoutSpecialChar);
+            Map<String, Integer> mostPopularWord = topTen(withoutSpecialChar);
 
             String bookTitle = Arrays.stream(book.getName().split("\\.")).toList().get(0);
 
@@ -35,7 +35,7 @@ public class BookManager {
         }
     }
 
-    private Map<String, Integer> tenMostPopularWord(String sentence){
+    private Map<String, Integer> topTen(String sentence){
         List<String> words = Arrays.stream(sentence.split(" ")).toList();
         HashMap<String, Integer> popularWords = new HashMap<>();
 
