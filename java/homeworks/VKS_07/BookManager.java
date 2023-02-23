@@ -22,11 +22,11 @@ public class BookManager {
                 System.out.println("Can't find book, please try again");
                 continue;
             }
-            String withoutSpecialChar = bookBuild.toString().replaceAll(CLEAN_UP, "").toLowerCase();
+            String bookWords = bookBuild.toString().replaceAll(CLEAN_UP, "").toLowerCase();
 
-            int uniqueWords = Arrays.stream(withoutSpecialChar.split(" ")).collect(Collectors.toSet()).size();
+            int uniqueWords = Arrays.stream(bookWords.split(" ")).collect(Collectors.toSet()).size();
 
-            Map<String, Integer> mostPopularWord = topTen(withoutSpecialChar);
+            Map<String, Integer> mostPopularWord = topTen(bookWords);
 
             String bookTitle = Arrays.stream(book.getName().split("\\.")).toList().get(0);
 
