@@ -1,0 +1,11 @@
+sed -> 7
+amet -> 8
+tincidunt -> 8
+nisl -> 7
+aliquam -> 8
+tellus -> 9
+non -> 10
+nec -> 9
+nulla -> 8
+sit -> 8
+Number of unique words - 140
